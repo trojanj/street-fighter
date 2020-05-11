@@ -9,20 +9,16 @@ export function createFighterPreview(fighter, position) {
 
   if (fighter) {
     const fighterImage = createFighterImage(fighter);
-    const name = createElement({tagName: 'p'});
-    const health = createElement({tagName: 'p'});
-    const atack = createElement({tagName: 'p'});
-    const defense = createElement({tagName: 'p'});
-    name.innerText = `Name: ${fighter.name}`;
-    health.innerText = `Health: ${fighter.health}`;
-    atack.innerText = `Attack: ${fighter.attack}`;
-    defense.innerText = `Defense: ${fighter.defense}`;
+    const detailsContainer = createElement({tagName: 'div', className: 'fighter-preview___details'});
+    detailsContainer.insertAdjacentHTML('beforeend', `
+      <h4>${fighter.name}</h4>
+      <i class="fas fa-heart"><span>${fighter.health}</span></i>
+      <i class="fas fa-khanda"><span>${fighter.attack}</span></i>
+      <i class="fas fa-shield-alt"><span>${fighter.defense}</span></i>
+    `)
 
-    fighterElement.append(fighterImage, name, health, atack, defense);
+    fighterElement.append(fighterImage, detailsContainer);
   }
-  
-
-  // todo: show fighter info (image, name, health, etc.)
 
   return fighterElement;
 }
