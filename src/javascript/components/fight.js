@@ -1,4 +1,5 @@
 import { controls } from '../../constants/controls';
+import { keyDownHandler, keyUpHandler } from './eventHandlers';
 
 const state = {
   firstFighter: {},
@@ -18,7 +19,8 @@ export async function fight(firstFighter, secondFighter) {
   setInitialState(firstFighter, secondFighter);
 
   return new Promise((resolve) => {
-
+    document.addEventListener('keydown', keyDownHandler.bind(null, firstFighter, secondFighter, resolve));
+    document.addEventListener('keyup', keyUpHandler);
   });
 }
 
