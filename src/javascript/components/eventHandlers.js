@@ -1,5 +1,5 @@
 import { controls } from '../../constants/controls';
-
+import { decreaseHealth, decreaseHealthIndicator, getDamage, state, getCriticalHitPower } from './fight';
 
 const {PlayerOneAttack, PlayerOneBlock, PlayerTwoAttack, PlayerTwoBlock, PlayerOneCriticalHitCombination, PlayerTwoCriticalHitCombination} = controls;
 

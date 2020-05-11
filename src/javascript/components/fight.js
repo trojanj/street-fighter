@@ -1,7 +1,7 @@
 import { controls } from '../../constants/controls';
 import { keyDownHandler, keyUpHandler } from './eventHandlers';
 
-const state = {
+export const state = {
   firstFighter: {},
   secondFighter: {},
   firstFighterCurrentHealth: null,
@@ -43,6 +43,22 @@ export function getBlockPower(fighter) {
 export function getCriticalHitPower(fighter) {
   const criticalHitPower = fighter.attack * 2
   return criticalHitPower
+}
+
+export function decreaseHealth(isFirstFighterAttack, damage) { 
+  const currentHealth = isFirstFighterAttack ? 'secondFighterCurrentHealth' : 'firstFighterCurrentHealth'
+  state[currentHealth] -= damage;
+}
+
+export function decreaseHealthIndicator(isFirstFighterAttack) {
+  const defender = isFirstFighterAttack ? state.secondFighter : state.firstFighter;
+  const currentHealth = isFirstFighterAttack ? state.secondFighterCurrentHealth : state.firstFighterCurrentHealth;
+  const position = isFirstFighterAttack ? 'right' : 'left';
+
+  const healthIndicator = document.getElementById(`${position}-fighter-indicator`);
+
+  const newWidth = state.initialWidthHealthIndicator * currentHealth / defender.health;
+  healthIndicator.style.width = newWidth > 0 ? newWidth + 'px' : 0;  
 }
 
 function setInitialState(firstFighter, secondFighter) {
