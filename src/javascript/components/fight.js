@@ -2,18 +2,32 @@ import { controls } from '../../constants/controls';
 
 export async function fight(firstFighter, secondFighter) {
   return new Promise((resolve) => {
-    // resolve the promise with the winner when fight is over
+    
   });
 }
 
 export function getDamage(attacker, defender) {
-  // return damage
+  const damage = getHitPower(attacker) - getBlockPower(defender); 
+  return damage > 0 ? damage : 0
 }
 
 export function getHitPower(fighter) {
-  // return hit power
+  const hitPower = fighter.attack * (Math.random() + 1);
+  return hitPower
 }
 
 export function getBlockPower(fighter) {
-  // return block power
+  if (!fighter) return 0
+  const blockPower = fighter.defense * (Math.random() + 1);
+  return blockPower
 }
+
+export function getCriticalHitPower(fighter) {
+  const criticalHitPower = fighter.attack * 2
+  return criticalHitPower
+}
+
+
+
+
+
